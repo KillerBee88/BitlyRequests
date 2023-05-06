@@ -8,8 +8,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-parser = argparse.ArgumentParser(description='Сокращение ссылок с помощью Bitly')
-parser.add_argument('url', help='Ссылка для сокращения или битлинк для получения количества кликов')
 
 def shorten_link(long_url, token):
     headers = {
@@ -53,9 +51,11 @@ def is_bitlink(short_url, token):
 
 
 def main():
-    token = os.getenv('BITLY_TOKEN')
-
+    parser = argparse.ArgumentParser(description='Сокращение ссылок с помощью Bitly')
+    parser.add_argument('url', help='Ссылка для сокращения или битлинк для получения количества кликов')
     args = parser.parse_args()
+    
+    token = os.getenv('BITLY_TOKEN')
     user_url = args.url
     
     if is_bitlink(user_url, token):
