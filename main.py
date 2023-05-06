@@ -6,8 +6,6 @@ import traceback
 from requests.exceptions import HTTPError
 from dotenv import load_dotenv
 
-load_dotenv()
-
 
 def shorten_link(long_url, token):
     headers = {
@@ -55,6 +53,7 @@ def main():
     parser.add_argument('url', help='Ссылка для сокращения или битлинк для получения количества кликов')
     args = parser.parse_args()
     
+    load_dotenv()
     token = os.getenv('BITLY_TOKEN')
     user_url = args.url
     
